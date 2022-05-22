@@ -1,6 +1,5 @@
 
 import model.Product;
-import model.Bill;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -11,45 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name="ProductServlet",urlPatterns="/sellproduct")
-public class ProductServlet extends HttpServlet {
+@WebServlet(name="/AddProductServlet",urlPatterns="/addproducts")
+public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public ProductServlet() {
+    public AddProductServlet() {
         super();
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/addproducts.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("pid")=="" || request.getParameter("quantity")=="") {
+		if(request.getParameter("pid")=="" || request.getParameter("quantity")=="" || request.getParameter("name")=="" || request.getParameter("price")=="") {
 			request.setAttribute("error", "One of the fields is empty");
 			doGet(request,response);
 		}
 		
 		int pid=Integer.parseInt(request.getParameter("pid"));
+		String name=request.getParameter("name");
+		float price = Float.parseFloat(request.getParameter("price"));
 		int qt=Integer.parseInt(request.getParameter("quantity"));
-		
 		
 		try {
 			if(Product.check(pid)) {
-				//add to table
-				if(Product.checkAvailability(pid,qt)){
-					Product.sell(pid,qt);
-					Bill.add(pid,qt);
-
-				}
-				else {
-					request.setAttribute("error", "Product Quantity Out of Range");
-				}
+				Product.update(pid,name,price,qt);
+				request.setAttribute("success", "Product Already exist and Updated Successfully");
 			}
 			else {
-				request.setAttribute("error", "Invalid Product ID");
+				Product.add(pid,name,price,qt);
+				request.setAttribute("success", "Product Added Successfully");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("error", e.toString());

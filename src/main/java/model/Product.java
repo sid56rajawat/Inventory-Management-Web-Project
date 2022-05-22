@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,6 +48,28 @@ public class Product {
         String query="UPDATE product SET Quantity=Quantity-"+qt+" WHERE pid="+id+"";
         Statement stmt = con.createStatement();
         stmt.executeUpdate(query);
+	}
+	
+	public static void update(int id,String name,float price,int qt) throws ClassNotFoundException, SQLException {
+		Connection con=getcon();
+        String query="UPDATE product SET Quantity=?,name=?,price=? WHERE pid=?";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setInt(1, qt);
+        pstmt.setString(2, name);
+        pstmt.setFloat(3, price);
+        pstmt.setInt(4, id);
+        pstmt.executeUpdate();
+	}
+	
+	public static void add(int id,String name,float price,int qt) throws ClassNotFoundException, SQLException {
+		Connection con=getcon();
+        String query="insert into product values(?,?,?,?)";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setInt(1, id);
+        pstmt.setString(2, name);
+        pstmt.setFloat(3, price);
+        pstmt.setInt(4, qt);
+        pstmt.executeUpdate();
 	}
 	
 //	public static void main(String []args) {

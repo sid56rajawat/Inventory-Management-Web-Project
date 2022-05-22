@@ -34,7 +34,7 @@ public class Employee {
 	//add method 
 	public static void add(String fname,String lname,String email,String username,String pass) throws ClassNotFoundException, SQLException {
 		Connection con=getcon();
-        String query="insert into employee values(?,?,?,?,?);";
+        String query="insert into employee values(?,?,?,?,?)";
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1, username);
         pstmt.setString(2, fname);

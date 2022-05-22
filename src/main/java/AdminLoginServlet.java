@@ -31,7 +31,7 @@ public class AdminLoginServlet extends HttpServlet {
 			doGet(request, response);
 		}
 		else if(obj.check(username,password)) {
-			response.sendRedirect("/adminoptions");
+			response.sendRedirect("http://localhost:9009/JavaMiniProject/adminoptions.jsp");
 		}
 		else {
 			request.setAttribute("error", "Incorrect Username or Password");

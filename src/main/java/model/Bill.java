@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,8 +39,15 @@ public class Bill {
         	}
         }
         
-        query="INSERT into bill values("+productId+","+name+","+price+","+qt+");";
-        stmt.executeUpdate(query);
+        query="INSERT into bill values(?,?,?,?,?);";
+        PreparedStatement pstmt= con.prepareStatement(query);
+        pstmt.setInt(1, productId);
+        pstmt.setString(2, name);
+        pstmt.setFloat(3, price);
+        pstmt.setInt(4, qt);
+        pstmt.setFloat(5, price*qt);
+        pstmt.executeUpdate();
+        
         
 	}
 }

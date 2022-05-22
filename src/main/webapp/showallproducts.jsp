@@ -22,26 +22,8 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>-CART-</title>
-</head>
-<body>
-<div>
-  <form action="http://localhost:9009/JavaMiniProject/sellproduct" method="post">
-      <p class="bg-red-300 text-red-900 font-semibold text-xl w-80 rounded-lg my-2 mx-auto">${error }</p>
-    <label for="pid">Product ID:</label>
-	<input type="text" id="pid" name="pid" />
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" /><br />   
-	
-	<input type="reset" value="Clear" name="clear" />
-    <input type="submit" value="Add" name="add" />
-  </form><br>
-  
   <div>
-	<h2 align="left"><font><strong>Products</strong></font></h2>
+	<h2 align="left"><font><strong>All Products</strong></font></h2>
 	<table align="left" cellpadding="5" cellspacing="5" border="1">
 	<tr>
 	
@@ -51,14 +33,12 @@ ResultSet resultSet = null;
 	<td><b>Name</b></td>
 	<td><b>Price</b></td>
 	<td><b>Quantity</b></td>
-	<td><b>Total</b></td>
 	</tr>
 	<%
 	try{ 
 	connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 	statement=connection.createStatement();
-	String sql ="SELECT * FROM bill";
-	
+	String sql ="SELECT * FROM product";
 	resultSet = statement.executeQuery(sql);
 	while(resultSet.next()){
 	%>
@@ -68,27 +48,19 @@ ResultSet resultSet = null;
 	<td><%=resultSet.getString("name") %></td>
 	<td><%=resultSet.getFloat(3) %></td>
 	<td><%=resultSet.getInt(4) %></td>
-	<td><%=resultSet.getFloat(5) %></td>
 	</tr>
 	
 	<% 
 	}
+	%>
 	
+	</table><br>
+	<%
 	} catch (Exception e) {
 	e.printStackTrace();
 	}
 	%>
-	</table><br>
-</div>
-
-  <div>
-    <form action="http://localhost:9009/JavaMiniProject/Bill.jsp" method="post">
-      <input type="submit" value="Generate Bill" name="add" />
-    </form>
-  </div>
-</div>
-<form action="http://localhost:9009/JavaMiniProject/home">
-      	<input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Home" name="home" />
+</div><br>
+  <form action="http://localhost:9009/JavaMiniProject/adminoptions.jsp">
+      	<input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Back" name="home" />
       </form>
-</body>
-</html>
