@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet(name="HomeServlet",urlPatterns="/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet(name="BillingServlet",urlPatterns="/billing")
+public class BillingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HomeServlet() {
+
+    public BillingServlet() {
         super();
     }
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//getServletContext().getRequestDispatcher("/homepage.jsp").forward(request, response);
-		response.sendRedirect("http://localhost:9009/JavaMiniProject/homepage.jsp");
+
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

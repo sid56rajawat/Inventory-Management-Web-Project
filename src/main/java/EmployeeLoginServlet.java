@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Bill;
 import model.Employee;
 
 @WebServlet(name="EmployeeLoginServlet", urlPatterns="/emplogin")
@@ -38,7 +39,8 @@ public class EmployeeLoginServlet extends HttpServlet {
 		} else
 			try {
 				if(Employee.check(username,password)) {
-					response.sendRedirect("/empoptions");
+					Bill.InitializeBill();
+					response.sendRedirect("http://localhost:9009/JavaMiniProject/sellproduct");
 				}
 				else {
 					request.setAttribute("error", "Incorrect Username or Password");
