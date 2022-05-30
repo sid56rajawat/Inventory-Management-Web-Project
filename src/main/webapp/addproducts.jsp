@@ -3,24 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>-Products Inventory-</title>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<title>-Products Inventory-</title>
 </head>
-<body>
-<form action="http://localhost:9009/JavaMiniProject/addproducts" method="post">
+<body class="bg-gray-400">
+<form class="bg-gray-400" action="http://localhost:9009/JavaMiniProject/addproducts" method="post">
       <p class="bg-red-300 text-red-900 font-semibold text-xl w-80 rounded-lg my-2 mx-auto">${error }</p>
       <p class="bg-green-300 text-green-900 font-semibold text-xl w-80 rounded-lg my-2 mx-auto">${success }</p>
-    <label for="pid">Product ID:</label>
-	<input type="text" id="pid" name="pid" />
-	<label for="name">Name:</label>
-	<input type="text" id="name" name="name" />
-	<label for="price">Price:</label>
-	<input type="text" id="price" name="price" />
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" /><br />   
-	
-	<input type="reset" value="Clear" name="clear" />
-    <input type="submit" value="Add" name="add" />
+    <label class="font-serif font-semibold" for="pid">Product ID:</label>
+	<input class="w-40 p-1 border-2 placeholder-blue-800 bg-blue-200 border-blue-700 appearance-none rounded-lg focus:outline-none focus:ring-2" type="text" id="pid" name="pid" />
+	<label class="font-serif font-semibold" for="name">Name:</label>
+	<input class="w-40 p-1 border-2 placeholder-blue-800 bg-blue-200 border-blue-700 appearance-none rounded-lg focus:outline-none focus:ring-2" type="text" id="name" name="name" />
+	<label class="font-serif font-semibold" for="price">Price:</label>
+	<input class="w-40 p-1 border-2 placeholder-blue-800 bg-blue-200 border-blue-700 appearance-none rounded-lg focus:outline-none focus:ring-2" type="text" id="price" name="price" />
+    <label class="font-serif font-semibold" for="quantity">Quantity:</label>
+    <input class="w-40 p-1 border-2 placeholder-blue-800 bg-blue-200 border-blue-700 appearance-none rounded-lg focus:outline-none focus:ring-2" type="number" id="quantity" name="quantity" /><br />   
+	<br>
+	<input class=" bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="reset" value="Clear" name="clear" />
+    <input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Add" name="add" />
   </form><br>
   <form action="http://localhost:9009/JavaMiniProject/adminoptions.jsp">
       	<input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Back" name="home" />
@@ -51,13 +53,12 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 
-  <div>
-	<h2 align="left"><font><strong>All Products</strong></font></h2>
-	<table align="left" cellpadding="5" cellspacing="5" border="1">
+  <div class="bg-gray-400 mx-60 my-36">
+	<h2 align="center" class="text-2xl text-semibold"><font><strong>All Products</strong></font></h2>
+	<table align="center" cellpadding="5" cellspacing="5" border="1">
 	<tr>
-	
 	</tr>
-	<tr bgcolor="#73757a">
+	<tr bgcolor="31906E">
 	<td><b>PID</b></td>
 	<td><b>Name</b></td>
 	<td><b>Price</b></td>
@@ -71,7 +72,7 @@ ResultSet resultSet = null;
 	resultSet = statement.executeQuery(sql);
 	while(resultSet.next()){
 	%>
-	<tr bgcolor="#7497ed">
+	<tr bgcolor="#66CDAA">
 	
 	<td><%=resultSet.getInt(1) %></td>
 	<td><%=resultSet.getString("name") %></td>
@@ -84,13 +85,13 @@ ResultSet resultSet = null;
 	%>
 	
 	</table><br>
-	<%
+</div><br>
+  <!-- <form class="text-center" action="http://localhost:9009/JavaMiniProject/adminoptions.jsp">
+        	<%
 	} catch (Exception e) {
 	e.printStackTrace();
 	}
-	%>
-</div><br>
-  <form action="http://localhost:9009/JavaMiniProject/adminoptions.jsp">
+	%><br><br>
       	<input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Back" name="home" />
-      </form>
+      </form> -->
 </html>

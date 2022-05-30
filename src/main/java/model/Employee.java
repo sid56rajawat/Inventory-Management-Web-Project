@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//this file is a POJO: Plain old java object
 public class Employee {
 	
 	private static Connection getcon() throws SQLException, ClassNotFoundException {

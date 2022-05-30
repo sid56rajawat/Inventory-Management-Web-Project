@@ -24,7 +24,7 @@
       <input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="reset" value="Clear" name="clear" />
       <input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Submit" name="submit" />
   	</form><br>
-  	<form action="http://localhost:9009/JavaMiniProject/home">
+  	<form action="http://localhost:9009/JavaMiniProject/home" method="get">
       	<input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Home" name="home" />
       </form>
   </div>

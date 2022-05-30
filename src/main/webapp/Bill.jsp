@@ -3,6 +3,16 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<title>-Your Bill-</title>
+</head>
+<body class="bg-gray-400">
+
 <%
 String id = request.getParameter("userId");
 String driverName = "com.mysql.jdbc.Driver";
@@ -22,13 +32,13 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 
-  <div>
-	<h2 align="left"><font><strong>Your Bill</strong></font></h2>
-	<table align="left" cellpadding="5" cellspacing="5" border="1">
+  <div class="mx-60 my-36">
+	<h2 align="center" class="text-2xl text-semibold"><font><strong>Your Bill</strong></font></h2>
+	<table align="center" cellpadding="5" cellspacing="5" border="1">
 	<tr>
 	
 	</tr>
-	<tr bgcolor="#73757a">
+	<tr bgcolor="31906E">
 	<td><b>PID</b></td>
 	<td><b>Name</b></td>
 	<td><b>Price</b></td>
@@ -45,7 +55,7 @@ ResultSet resultSet = null;
 	while(resultSet.next()){
 		total+=resultSet.getFloat(5);
 	%>
-	<tr bgcolor="#7497ed">
+	<tr bgcolor="#66CDAA">
 	
 	<td><%=resultSet.getInt(1) %></td>
 	<td><%=resultSet.getString("name") %></td>
@@ -59,13 +69,20 @@ ResultSet resultSet = null;
 	%>
 	
 	</table><br>
-	<p>total :<%=total %></p>
-	<%
+	<p class="text-right text-2xl text-semibold">Total :<%=total %></p>
+	<br>
+</div>
+<br>
+	<div class="text-center bg-blue-300">
+  	<%
 	} catch (Exception e) {
 	e.printStackTrace();
 	}
-	%>
-</div><br>
-<form action="http://localhost:9009/JavaMiniProject/home">
-      	<input class="bg-blue-300 text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Home" name="home" />
-      </form>
+	%><br><br>
+  <form action="http://localhost:9009/JavaMiniProject/home">
+      <input class="text-xl font-semibold px-4 py-1 rounded-lg hover:bg-blue-800 hover:text-white" type="submit" value="Home" name="home" />
+  </form>
+	</div>
+
+</body>
+</html>
